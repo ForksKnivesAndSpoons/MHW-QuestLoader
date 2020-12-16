@@ -22,10 +22,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1
 
     - name: Get vcpkgs
-      run: vcpkg install
-      env:
-        VCPKG_FEATURE_FLAGS: "manifests"
-        VCPKG_DEFAULT_TRIPLET: "x64-windows-static"
+      run: vcpkg install --feature-flags="manifests" --triplet="x64-windows-static"
 
     - name: Build
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
