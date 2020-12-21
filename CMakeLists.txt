@@ -1,7 +1,7 @@
 # Need to set these env vars CC=CL CXX=CL | CC=CL.exe && CXX=CL.exe
 cmake_minimum_required(VERSION 3.19)
 
-project(MHW_QuestLoader CXX)
+project(StrackerLoader CXX)
 set(CMAKE_CXX_STANDARD 14)
 set(CXX_STANDARD_REQUIRED ON)
 
