@@ -1,0 +1,5 @@
+project(loader)
+FILE(GLOB loaderSources *.cpp *.h)
+add_library(loader SHARED ${loaderSources})
+add_library(loader STATIC ${loaderSources})
+target_link_libraries(loader PRIVATE nlohmann-json memorymodule minhook)
