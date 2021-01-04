@@ -71,7 +71,7 @@ jobs:
 
     - name: Zip it
       run: |
-        python scripts/package.py
+        python3 scripts/package.py
 
     - name: Create release with binaries
       env:
