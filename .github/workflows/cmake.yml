@@ -77,4 +77,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create v$GIT_TAG -t "Release v$GIT_TAG" build/*.zip
+        gh release create $GIT_TAG -t "Release $GIT_TAG" build/*.zip
