@@ -67,7 +67,7 @@ jobs:
           GIT_TAG=$(git describe --first-parent --abbrev=0)
         fi
         REV_COUNT=$(git rev-list $GIT_TAG..HEAD --count)
-        echo "GIT_TAG=$GIT_TAG.$REV_COUNT" >> $GITHUB_ENV
+        echo "GIT_TAG=$GIT_TAG-$REV_COUNT" >> $GITHUB_ENV
 
     - name: Zip it
       run: |
@@ -77,4 +77,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release create $GIT_TAG -t "Release $GIT_TAG" build/*.zip
+        BUILD=$(echo $GIT_TAG | cut -d'-' -f2)
+        [[ $BUILD = 0 ]] && prerelease="" || prerelease="-p"
+        gh release create $GIT_TAG -t "Release $GIT_TAG" $prerelease build/*.zip
