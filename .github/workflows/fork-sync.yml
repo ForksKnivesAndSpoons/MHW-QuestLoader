@@ -1,0 +1,24 @@
+name: Fork Sync
+
+on:
+  schedule:
+    - cron: '30 20 * * *'
+  #manual trigger button
+  workflow_dispatch:
+
+jobs:
+  sync:
+    strategy:
+      fail-fast: false
+      matrix:
+        branch:
+          - master
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sync ${{ matrix.branch }}
+      uses: tgymnich/fork-sync@v1.2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        owner: Strackeror
+        base: ${{ matrix.branch }}
+        head: ${{ matrix.branch }}
