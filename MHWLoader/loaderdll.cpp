@@ -93,19 +93,24 @@ void OldWarning() {
 static std::string GameVersionString;
 
 void FindVersion() {
-  const auto CalcNumBits =
-      "01001... 10001101 01001100 ..100100 00110000 01001... 10001101 01000010 "
-      "11110101";
-  auto [binData, binMask] = parseBinary(CalcNumBits);
-  auto found = scanmem(binData, binMask);
-  if (found.size() != 1) {
-    LOG(ERR) << "Build Number check failed.";
-    LOG(ERR) << "Could not find game version";
-    LOG(ERR) << "Loader needs to be updated.";
-    return;
-  }
+  //   const auto CalcNumBits =
+  //       "01001... 10001101 01001100 ..100100 00110000 01001... 10001101"
+  //       "01000010 11110101";
+  //   auto [binData, binMask] = parseBinary(CalcNumBits);
+  //   auto found = scanmem(binData, binMask);
+  //   if (found.size() != 1) {
+  //     LOG(ERR) << "Build Number check failed.";
+  //     LOG(ERR) << "Could not find game version";
+  //     LOG(ERR) << "Loader needs to be updated.";
+  //     return;
+  //   }
 
-  byte* instruction = found[0] - 0x18;
+  //   LOG(INFO) << std::hex << "GameVersion AOB found at: 0x"
+  //             << (uintptr_t)found[0];
+
+  //   byte* instruction = found[0] - 0x18;
+
+  auto instruction = (byte*)(0x1418e61ec - 0x18);
 
   char** exeGameVersion =
       (char**)(instruction + *(uint32_t*)(instruction + 0x3) + 0x7);
